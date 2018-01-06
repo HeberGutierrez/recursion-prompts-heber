@@ -1,0 +1,58 @@
+Recursion
+Now that you've practiced many of the fundamentals of JavaScript, let's introduce a programming concept that can be applied to problems in many languages -- not just JavaScript.
+Recursion is a pattern in which a function, when executed, calls itself until it reaches a designated stopping point.
+A recursive function is simply a function that calls itself. For example, this function calculates a number's factorial:
+ var factorial = function(number) {
+  if (number < 0) {
+    return -1;
+  }
+  if (number === 0) {
+    return 1;
+  }
+  return (number * factorial(number - 1));
+};
+Let's add comments to this function to explain how it works.
+var factorial = function(number) {
+  // BASE CASE: If the number is negative, it doesn't have a factorial. Return an
+  // impossible value to indicate this.
+  if (number < 0) {
+    return -1;
+  }
+  // BASE CASE: If the number is zero, its factorial is one.
+  if (number === 0) {
+    return 1;
+  }
+  // RECURSIVE CASE: If the number is neither illegal nor zero, call factorial again,
+  // this time passing in a smaller number. Eventually we'll reach 0,
+  // causing each call to return to its caller and the recursion terminates.
+  return (number * factorial(number - 1));
+};
+All recursive functions have at least one base case: a case when the function can produce a result without recursing. In the factorial example above, number === 0 is one of two base cases. If number is 0, we know the solution must be 1 and thus we don't need to recurse to solve the problem.
+All recursive functions also have at least one recursive case, which calls the function itself with different arguments than were passed in originally. The recursive case encapsulates the self-referential aspect of the algorithm. In our factorial example, the final return statement elegantly represents the definition that n! = n * (n-1)! for all positive values of n.
+Visualize the Call Stack in Recursion
+An important element to consider in recursion is the call stack.
+Remember that a new execution context, or in-memory scope, is generated each time a function executes. That scope exists until the function that generated it returns (finishes executing).
+In a recursive function, the original execution context remains open while the function calls itself; after all, the original function hasn't reached the "return statement" yet. The function calling itself opens a new context. Each opened execution context is represented on the call stack as a stack frame, which comes complete with its own local variables and values.
+The stack frames build up as the recursive function calls itself again and again, until the function finally reaches a base case and returns a value. (If the function doesn't reach a base case and return a value in time, you'll get a Maximum call stack exceeded error -- in other words, you'll blow the stack!) The value that the base case returns is then passed back up the stack back through all the open in-memory scopes, until the original scope finally closes as the original function returns (finishes executing).
+You can visual the call stack building and passing values for the factorial function using this neat Python Tutor tool. Use the "Forward" button to walk through each line of code.
+Practice Recursion in JavaScript
+Complete the following course introducing you to recursion.
+LINK: http://www.codecademy.com/courses/javascript-lesson-205
+DURATION: 1 - 2 Hours
+A gentle introduction to what recursion is and why you might want to use it.
+Recursion Prompts
+[Course] Recursion Prompts
+LINK: https://github.com/HC1-CDMX/recursion-prompts
+DURATION: 5-8 hours
+This repo, courtesy of mybrainishuge, is a great opportunity to practice many toy problems using recursion.
+Access Recursion Prompts
+Clone down the forked repo to your local machine.
+Make frequent git commits as you work!
+Use Recursion Prompts
+Read the README.md thoroughly.
+Complete at least the required prompts (1-20) in recursion.js.
+Use SpecRunner.html in your browser to run the tests.
+Before Moving On
+Understand what recursion is, in general.
+Understand base cases, and what it means for recursion to terminate.
+Ensure that your Recursion Prompts code is pushed to your Github repo.
