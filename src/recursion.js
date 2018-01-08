@@ -75,18 +75,10 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-  var count = arguments[2] || 1;
-  var result = arguments[3] || base;
-  var n = arguments[4] || exp;
-
-  if (exp < 0) {
-    return exponent(base, exp + 1) / base;
-  } else if (exp === 0) {
+  if (exp === 0) {
     return 1;
-  } else {
-    base *= exponent(base, exp - 1);
-    return base;
   }
+  return exp > 0 ? base * exponent(base, exp - 1) : 1 / (base * exponent(base, -1 * exp - 1));
 };
 
 // 8. Determine if a number is a power of two.
@@ -132,13 +124,40 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
-
+  if (y === 0) {
+    return NaN;
+  }
+  if (x > 0 && y > 0) {
+    if (x - y >= 0) {
+      return modulo(x - y, y);
+    } else {
+      return x;
+    }
+  }
+  if (x < 0 && !newX) {
+    var newX = ~(x) + 1;
+  } else {
+    var newX = x;
+  }
+  if (y < 0 && !newY) {
+    var newY = ~(y) + 1;
+  } else {
+    var newY = y;
+  }
+  if (newX < newY) {
+    return x;
+  } else if (newX > newY && newX - newY < newY) {
+    return -(newX - newY);
+  } else if (newX > newY && newX - newY === newY) {
+    return -0;
+  }
 };
-
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
-var multiply = function(x, y) {};
+var multiply = function(x, y) {
+
+};
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods.
