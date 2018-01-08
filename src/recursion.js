@@ -156,7 +156,12 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
-
+  if (y > 0) {
+    return (x + multiply(x, y - 1))
+  } else if (y < 0) {
+    return -multiply(x, -y);
+  }
+  return 0;
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
