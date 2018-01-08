@@ -96,3 +96,20 @@ function factorial(n) {
 }
 
 factorial(6);
+
+//YOU CAN TRY define a base CASE
+function factorial(n) {
+
+  // Put your code here.
+  if (n < 0) {
+    console.log("Can't make a factorial from a negative number.");
+    return n;
+  }
+  // Base case
+  if (n === 0) {
+    return 1;
+  }
+  // What's wrong with this picture? Why won't this recursion work?
+  return n * factorial(n - 1);
+
+}
