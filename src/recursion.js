@@ -96,12 +96,10 @@ var exponent = function(base, exp) {
 var powerOfTwo = function(n) {
   if (n === 1) {
     return true;
-  } else if (n === 2) {
-    return true;
-  } else if (n % 5 === 0) {
+  } else if (n < 1) {
     return false;
   } else {
-    return powerOfTwo(n / 2);
+    return powerOfTwo(n / 2)
   }
 };
 
@@ -115,14 +113,28 @@ var reverse = function(string) {
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {};
+var palindrome = function(string) {
+  var mystring = string.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+  if (mystring[mystring.length - 1] === mystring[0]) {
+    if (mystring.length <= 3) {
+      return true;
+    }
+    var editedString = mystring.slice(1, mystring.length - 1);
+    return palindrome(editedString);
+  } else {
+    return false;
+  }
+};
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function(x, y) {};
+var modulo = function(x, y) {
+
+};
+
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
