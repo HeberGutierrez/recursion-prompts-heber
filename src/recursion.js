@@ -225,7 +225,6 @@ var createArray = function(str) {
     return [];
   }
   return [str[0]].concat(createArray(str.slice(1)));
-  var array = [];
   if (str.length === 1) {
     return array.concat(str[0]);
   }
@@ -300,7 +299,18 @@ var rMap = function(array, callback) {
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
-var countKeysInObj = function(obj, key) {};
+var countKeysInObj = function(obj, key) {
+  var count = 0;
+  for (var i in obj) {
+    if (i === key) {
+      count++;
+    }
+    if (typeof obj[i] === 'object') {
+      count += countKeysInObj(obj[i], key);
+    }
+  }
+  return count;
+};
 
 // 23. Write a function that counts the number of times a value occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
